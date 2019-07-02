@@ -1,16 +1,20 @@
 package com.soft.pgs;
 
+import com.google.gson.Gson;
+import com.soft.pgs.dto.CarCoordinates;
+import com.soft.pgs.utils.Utils;
 import org.eclipse.paho.client.mqttv3.*;
 
 public class Application implements MqttCallback {
 
     private MqttClient client;
 
-    private static final String SUBSCRIBER_URI= "mqtt.subscriber_uri";
+    private static final String SUBSCRIBER_URI = "mqtt.subscriber_uri";
     private static final String SUBSCRIBER_CLIENT_ID = "mqtt.subscriber_client_id";
     private static final String SUBSCRIBER_TOPIC = "mqtt.subscriber_topic";
 
-    private Application() {}
+    private Application() {
+    }
 
     public static void main(String[] args) {
         new Application().run();
@@ -39,8 +43,10 @@ public class Application implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        System.out.println(mqttMessage);
+    public void messageArrived(String s, MqttMessage mqttMessage) {
+        Gson g = new Gson();
+        CarCoordinates car = g.fromJson(mqttMessage.toString(), CarCoordinates.class);
+        System.out.println(car.getLocation().getLat());
     }
 
     @Override

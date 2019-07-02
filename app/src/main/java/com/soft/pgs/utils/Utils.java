@@ -1,5 +1,6 @@
-package com.soft.pgs;
+package com.soft.pgs.utils;
 
+import com.soft.pgs.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,12 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-class Utils {
+public class Utils {
 
     private static final String PROPERTIES_FILE = "config.properties";
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
-    static void loadProperties() {
+    public static void loadProperties() {
         try {
             InputStream propFile = Application.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE);
 
