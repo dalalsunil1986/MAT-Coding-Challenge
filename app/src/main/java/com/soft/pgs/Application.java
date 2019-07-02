@@ -47,6 +47,10 @@ public class Application implements MqttCallback {
         Gson g = new Gson();
         CarCoordinates car = g.fromJson(mqttMessage.toString(), CarCoordinates.class);
         System.out.println(car.getLocation().getLat());
+
+        MqttMessage carStatusMessage = new MqttMessage();
+        MqttMessage eventsMessage = new MqttMessage();
+
     }
 
     @Override
